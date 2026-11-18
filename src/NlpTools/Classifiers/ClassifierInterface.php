@@ -13,5 +13,5 @@ interface ClassifierInterface
      *
      * @param array<int, string> $classes
      */
-    public function classify(array $classes, DocumentInterface $document): string;
+    public function classify(array $classes, DocumentInterface $document): int|string;
 }

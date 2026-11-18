@@ -23,7 +23,7 @@ class TrainingSet implements \Iterator, \ArrayAccess, \Countable
     /**
      * An array that contains all the classes present in the TrainingSet
      *
-     * @var array<string, int>
+     * @var array<int|string, int>
      */
     protected array $classSet = [];
 
@@ -37,13 +37,13 @@ class TrainingSet implements \Iterator, \ArrayAccess, \Countable
     // When iterated upon what should the key be?
     protected int $keytype = self::CLASS_AS_KEY;
 
-    // When iterated upon the currentDocument
-    protected DocumentInterface|false $currentDocument;
+    // When iterated upon the currentDocument. Serialized sets carry null here, so it must be nullable.
+    protected DocumentInterface|false|null $currentDocument = null;
 
     /**
      * Add a document to the set.
      */
-    public function addDocument(string $class, DocumentInterface $document): void
+    public function addDocument(int|string $class, DocumentInterface $document): void
     {
         $this->documents[] = new TrainingDocument($class, $document);
         $this->classSet[$class] = 1;
@@ -52,7 +52,7 @@ class TrainingSet implements \Iterator, \ArrayAccess, \Countable
     /**
      * Return the classset
      *
-     * @return array<int, string>
+     * @return array<int, int|string>
      */
     public function getClassSet(): array
     {
@@ -106,7 +106,7 @@ class TrainingSet implements \Iterator, \ArrayAccess, \Countable
         return $this->currentDocument;
     }
 
-    public function key(): string
+    public function key(): int|string|null
     {
         return match ($this->keytype) {
             self::CLASS_AS_KEY => $this->currentDocument->getClass(),

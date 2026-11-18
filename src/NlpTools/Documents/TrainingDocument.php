@@ -15,11 +15,28 @@ use NlpTools\Documents\DocumentInterface;
 class TrainingDocument implements DocumentInterface
 {
     /**
-     * @param string            $class The actual class of the Document $d
+     * The decorated document.
+     *
+     * The property names and their declaration order are part of the serialization format of
+     * TrainingSet files that applications keep on disk (see TrainingSetSerializationTest); they have to stay
+     * `d` and `class`.
+     */
+    protected DocumentInterface $d;
+
+    /**
+     * The actual class. Numeric class names are turned into int array keys by PHP, so both
+     * types occur in practice and are kept as given.
+     */
+    protected int|string $class;
+
+    /**
+     * @param int|string        $class The actual class of the Document $d
      * @param DocumentInterface $document The document to be decorated
      */
-    public function __construct(protected string $class, protected DocumentInterface $document)
+    public function __construct(int|string $class, DocumentInterface $document)
     {
+        $this->d = $document;
+        $this->class = $class;
     }
 
     /**
@@ -27,10 +44,10 @@ class TrainingDocument implements DocumentInterface
      */
     public function getDocumentData(): array
     {
-        return $this->document->getDocumentData();
+        return $this->d->getDocumentData();
     }
 
-    public function getClass(): string
+    public function getClass(): int|string
     {
         return $this->class;
     }
@@ -40,6 +57,6 @@ class TrainingDocument implements DocumentInterface
      */
     public function applyTransformation(TransformationInterface $transformation): void
     {
-        $this->document->applyTransformation($transformation);
+        $this->d->applyTransformation($transformation);
     }
 }

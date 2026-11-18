@@ -27,5 +27,5 @@ interface DocumentInterface
      */
     public function applyTransformation(TransformationInterface $transformation): void;
 
-    public function getClass(): string;
+    public function getClass(): int|string;
 }

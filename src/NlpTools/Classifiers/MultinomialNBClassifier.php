@@ -22,10 +22,17 @@ class MultinomialNBClassifier implements ClassifierInterface
      * successively and return that class that has the maximum
      * probability.
      *
-     * @param array<int, string> $classes
+     * Without any class to choose from the result is the empty string (the untyped original
+     * returned `false` here, which callers compared loosely against an empty string anyway).
+     *
+     * @param array<int, int|string> $classes
      */
-    public function classify(array $classes, DocumentInterface $document): string
+    public function classify(array $classes, DocumentInterface $document): int|string
     {
+        if ($classes === []) {
+            return '';
+        }
+
         $maxclass = current($classes);
         $maxscore = $this->getScore($maxclass, $document);
         while ($class = next($classes)) {
@@ -47,7 +54,7 @@ class MultinomialNBClassifier implements ClassifierInterface
      * @todo perhaps MultinomialNBModel should have precomputed the logs
      *       ex.: getLogPrior() and getLogCondProb()
      */
-    public function getScore(string $class, DocumentInterface $document): float
+    public function getScore(int|string $class, DocumentInterface $document): float
     {
         $score = log($this->multinomialNBModel->getPrior($class));
         $features = $this->featureFactory->getFeatureArray($class, $document);
