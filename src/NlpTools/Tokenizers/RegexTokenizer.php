@@ -99,7 +99,7 @@ class RegexTokenizer implements TokenizerInterface
     protected function replace(array &$str, string $pattern, string $replacement): void
     {
         foreach ($str as &$s) {
-            $s = preg_replace($pattern, $replacement, $s);
+            $s = preg_replace($pattern, $replacement, (string) $s);
         }
     }
 }
