@@ -70,12 +70,14 @@ jobs:
         run: vendor/bin/phpcs
 
       - name: Execute PHP Stan
-        run: vendor/bin/phpstan
+        # The default CLI limit of 128M is not enough for src + tests
+        run: vendor/bin/phpstan --memory-limit=1G
 
       - name: Execute Rector
         run: vendor/bin/rector --dry-run
 
+      # Includes the Slow group (~10s): PorterStemmerTest guards against stemmer regressions
       - name: Execute PHP Unit
-        run: vendor/bin/phpunit --exclude-group Slow
+        run: vendor/bin/phpunit
 
 
