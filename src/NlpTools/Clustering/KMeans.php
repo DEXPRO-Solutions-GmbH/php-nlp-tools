@@ -97,8 +97,9 @@ class KMeans extends Clusterer
             );
 
             // compute the change each centroid had from the previous one
+            // (dist() takes its arguments by reference, so it cannot be handed to array_map directly)
             $changes = array_map(
-                $dist,
+                fn(array $new, array $old): float => $this->distance->dist($new, $old),
                 $new_centroids,
                 $centroids
             );

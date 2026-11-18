@@ -32,7 +32,7 @@ class Idf implements \ArrayAccess
      * @param TrainingSet $trainingSet The set of documents for which we will compute the idf
      * @param FeatureFactoryInterface $featureFactory A feature factory to translate the document data to single tokens
      */
-    public function __construct(TrainingSet $trainingSet, FeatureFactoryInterface $featureFactory = null)
+    public function __construct(TrainingSet $trainingSet, ?FeatureFactoryInterface $featureFactory = null)
     {
         if (!$featureFactory instanceof FeatureFactoryInterface) {
             $featureFactory = new DataAsFeatures();

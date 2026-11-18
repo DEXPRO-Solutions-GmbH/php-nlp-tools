@@ -8,7 +8,7 @@ use NlpTools\Random\Generators\GeneratorInterface;
 
 class Normal extends AbstractDistribution
 {
-    public function __construct(protected float $m = 0.0, protected float $sigma = 1.0, GeneratorInterface $generator = null)
+    public function __construct(protected float $m = 0.0, protected float $sigma = 1.0, ?GeneratorInterface $generator = null)
     {
         parent::__construct($generator);
         $this->sigma = abs($sigma);
