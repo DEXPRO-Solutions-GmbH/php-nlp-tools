@@ -81,7 +81,7 @@ class GreekStemmer extends Stemmer
 
         //step 3
         $re = "/^(.+?)(ια|ιου|ιων)$/u";
-        if (preg_match($re, (string) $w, $fp)) {
+        if (preg_match($re, $w, $fp)) {
             $stem = $fp[1];
             $w = $stem;
             $re = "/" . self::$v . "$/u";
@@ -93,7 +93,7 @@ class GreekStemmer extends Stemmer
 
         //step 4
         $re = "/^(.+?)(ικα|ικο|ικου|ικων)$/u";
-        if (preg_match($re, (string) $w, $fp)) {
+        if (preg_match($re, $w, $fp)) {
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
@@ -124,15 +124,15 @@ class GreekStemmer extends Stemmer
         $re17 = "/^(.+?)(ουνε|ησουνε|ηθουνε)$/u";
         $re18 = "/^(.+?)(ουμε|ησουμε|ηθουμε)$/u";
 
-        if ($w == "αγαμε") {
+        if ($w === "αγαμε") {
             return "αγαμ";
         }
 
-        if (preg_match($re2, (string) $w, $fp)) {
+        if (preg_match($re2, $w, $fp)) {
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
-        } elseif (preg_match($re, (string) $w, $fp)) {
+        } elseif (preg_match($re, $w, $fp)) {
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
@@ -140,7 +140,7 @@ class GreekStemmer extends Stemmer
             if (preg_match($exept6, $w)) {
                 $w .= "αμ";
             }
-        } elseif (preg_match($re4, (string) $w, $fp)) { //step 5b
+        } elseif (preg_match($re4, $w, $fp)) { //step 5b
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
@@ -148,7 +148,7 @@ class GreekStemmer extends Stemmer
             if (preg_match($re4, $w)) {
                 $w .= "αγαν";
             }
-        } elseif (preg_match($re3, (string) $w, $fp)) {
+        } elseif (preg_match($re3, $w, $fp)) {
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
@@ -157,11 +157,11 @@ class GreekStemmer extends Stemmer
             if (preg_match($re3, $w) || preg_match($exept7, $w)) {
                 $w .= "αν";
             }
-        } elseif (preg_match($re6, (string) $w, $fp)) { //step 5c
+        } elseif (preg_match($re6, $w, $fp)) { //step 5c
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
-        } elseif (preg_match($re5, (string) $w, $fp)) {
+        } elseif (preg_match($re5, $w, $fp)) {
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
@@ -175,7 +175,7 @@ class GreekStemmer extends Stemmer
             } elseif (preg_match($exept9, $w)) {
                 $w .= "ετ";
             }
-        } elseif (preg_match($re7, (string) $w, $fp)) { //step 5d
+        } elseif (preg_match($re7, $w, $fp)) { //step 5d
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
@@ -189,7 +189,7 @@ class GreekStemmer extends Stemmer
             if (preg_match($exept11, $w)) {
                 $w .= "ωντ";
             }
-        } elseif (preg_match($re8, (string) $w, $fp)) { //step 5e
+        } elseif (preg_match($re8, $w, $fp)) { //step 5e
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
@@ -198,7 +198,7 @@ class GreekStemmer extends Stemmer
             if (preg_match($exept11, $w)) {
                 $w .= "ομαστ";
             }
-        } elseif (preg_match($re10, (string) $w, $fp)) { //step 5f
+        } elseif (preg_match($re10, $w, $fp)) { //step 5f
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
@@ -207,7 +207,7 @@ class GreekStemmer extends Stemmer
             if (preg_match($re10, $w)) {
                 $w .= "ιεστ";
             }
-        } elseif (preg_match($re9, (string) $w, $fp)) {
+        } elseif (preg_match($re9, $w, $fp)) {
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
@@ -216,11 +216,11 @@ class GreekStemmer extends Stemmer
             if (preg_match($exept12, $w)) {
                 $w .= "εστ";
             }
-        } elseif (preg_match($re12, (string) $w, $fp)) { //step 5g
+        } elseif (preg_match($re12, $w, $fp)) { //step 5g
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
-        } elseif (preg_match($re11, (string) $w, $fp)) {
+        } elseif (preg_match($re11, $w, $fp)) {
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
@@ -232,7 +232,7 @@ class GreekStemmer extends Stemmer
             } elseif (preg_match($exept14, $w)) {
                 $w .= "ηκ";
             }
-        } elseif (preg_match($re13, (string) $w, $fp)) { //step 5h
+        } elseif (preg_match($re13, $w, $fp)) { //step 5h
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
@@ -244,7 +244,7 @@ class GreekStemmer extends Stemmer
             } elseif (preg_match($exept16, $w)) {
                 $w .= "ουσ";
             }
-        } elseif (preg_match($re14, (string) $w, $fp)) { //step 5i
+        } elseif (preg_match($re14, $w, $fp)) { //step 5i
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
@@ -260,7 +260,7 @@ class GreekStemmer extends Stemmer
             ) {
                 $w .= "αγ";
             }
-        } elseif (preg_match($re15, (string) $w, $fp)) { //step 5j
+        } elseif (preg_match($re15, $w, $fp)) { //step 5j
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
@@ -269,7 +269,7 @@ class GreekStemmer extends Stemmer
             if (preg_match($exept21, $w)) {
                 $w .= "ησ";
             }
-        } elseif (preg_match($re16, (string) $w, $fp)) { //step 5k
+        } elseif (preg_match($re16, $w, $fp)) { //step 5k
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
@@ -278,7 +278,7 @@ class GreekStemmer extends Stemmer
             if (preg_match($exept22, $w)) {
                 $w .= "ηστ";
             }
-        } elseif (preg_match($re17, (string) $w, $fp)) { //step 5l
+        } elseif (preg_match($re17, $w, $fp)) { //step 5l
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
@@ -287,7 +287,7 @@ class GreekStemmer extends Stemmer
             if (preg_match($exept23, $w)) {
                 $w .= "ουν";
             }
-        } elseif (preg_match($re18, (string) $w, $fp)) { //step 5l
+        } elseif (preg_match($re18, $w, $fp)) { //step 5l
             $stem = $fp[1];
             $w = $stem;
             $test1 = false;
@@ -301,19 +301,19 @@ class GreekStemmer extends Stemmer
         // step 6
         $re = "/^(.+?)(ματα|ματων|ματοσ)$/u";
         $re2 = "/^(.+?)(α|αγατε|αγαν|αει|αμαι|αν|ασ|ασαι|αται|αω|ε|ει|εισ|ειτε|εσαι|εσ|εται|ι|ιεμαι|ιεμαστε|ιεται|ιεσαι|ιεσαστε|ιομασταν|ιομουν|ιομουνα|ιονταν|ιοντουσαν|ιοσασταν|ιοσαστε|ιοσουν|ιοσουνα|ιοταν|ιουμα|ιουμαστε|ιουνται|ιουνταν|η|ηδεσ|ηδων|ηθει|ηθεισ|ηθειτε|ηθηκατε|ηθηκαν|ηθουν|ηθω|ηκατε|ηκαν|ησ|ησαν|ησατε|ησει|ησεσ|ησουν|ησω|ο|οι|ομαι|ομασταν|ομουν|ομουνα|ονται|ονταν|οντουσαν|οσ|οσασταν|οσαστε|οσουν|οσουνα|οταν|ου|ουμαι|ουμαστε|ουν|ουνται|ουνταν|ουσ|ουσαν|ουσατε|υ|υσ|ω|ων)$/u";
-        if (preg_match($re, (string) $w, $fp)) {
+        if (preg_match($re, $w, $fp)) {
             $stem = $fp[1];
             $w = $stem . "μα";
         }
 
-        if (preg_match($re2, (string) $w, $fp) && $test1) {
+        if (preg_match($re2, $w, $fp) && $test1) {
             $stem = $fp[1];
             $w = $stem;
         }
 
         // step 7
         $re = "/^(.+?)(εστερ|εστατ|οτερ|οτατ|υτερ|υτατ|ωτερ|ωτατ)$/u";
-        if (preg_match($re, (string) $w, $fp)) {
+        if (preg_match($re, $w, $fp)) {
             $stem = $fp[1];
             $w = $stem;
         }

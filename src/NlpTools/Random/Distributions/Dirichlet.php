@@ -18,7 +18,7 @@ class Dirichlet extends AbstractDistribution
      */
     protected array $gamma;
 
-    public function __construct(mixed $a, float $k, GeneratorInterface $generator = null)
+    public function __construct(mixed $a, float $k, ?GeneratorInterface $generator = null)
     {
         parent::__construct($generator);
 

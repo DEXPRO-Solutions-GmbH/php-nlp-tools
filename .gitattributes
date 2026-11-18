@@ -1,0 +1,2 @@
+# The serialized fixtures contain NUL bytes and must never be touched by EOL conversion.
+tests/data/Serialized/*.training -text

@@ -58,7 +58,7 @@ class ClassifierBasedTransformation implements TransformationInterface
      *
      * @param array<string, mixed>|TransformationInterface $transforms Either an array of transformations or a single transformation
      */
-    public function register(string $class, array|TransformationInterface $transforms): void
+    public function register(int|string $class, array|TransformationInterface $transforms): void
     {
         if (!is_array($transforms)) {
             $transforms = [$transforms];

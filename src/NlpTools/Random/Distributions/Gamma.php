@@ -20,7 +20,7 @@ class Gamma extends AbstractDistribution
 
     protected float $shape;
 
-    public function __construct(float $shape, protected float $scale, GeneratorInterface $generator = null)
+    public function __construct(float $shape, protected float $scale, ?GeneratorInterface $generator = null)
     {
         parent::__construct($generator);
         $this->shape = abs($shape);
@@ -31,7 +31,7 @@ class Gamma extends AbstractDistribution
         }
     }
 
-    public function sample(): ?float
+    public function sample(): float
     {
         if ($this->shape >= 1) {
             $d = $this->shape - 1 / 3;
@@ -55,7 +55,5 @@ class Gamma extends AbstractDistribution
 
             return $this->scale * $g * $w ** (1 / $this->shape);
         }
-
-        return null;
     }
 }

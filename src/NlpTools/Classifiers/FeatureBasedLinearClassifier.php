@@ -22,10 +22,16 @@ class FeatureBasedLinearClassifier implements ClassifierInterface
      * Compute the vote for every class. Return the class that
      * receive the maximum vote.
      *
-     * @param array<int, string> $classes
+     * Without any class to choose from the result is the empty string.
+     *
+     * @param array<int, int|string> $classes
      */
-    public function classify(array $classes, DocumentInterface $document): string
+    public function classify(array $classes, DocumentInterface $document): int|string
     {
+        if ($classes === []) {
+            return '';
+        }
+
         $maxclass = current($classes);
         $maxvote = $this->getVote($maxclass, $document);
         while ($class = next($classes)) {
@@ -43,7 +49,7 @@ class FeatureBasedLinearClassifier implements ClassifierInterface
      * Compute the features that fire for the Document $d. The sum of
      * the weights of the features is the vote.
      */
-    public function getVote(string $class, DocumentInterface $document): float
+    public function getVote(int|string $class, DocumentInterface $document): float
     {
         $v = 0;
         $features = $this->featureFactory->getFeatureArray($class, $document);

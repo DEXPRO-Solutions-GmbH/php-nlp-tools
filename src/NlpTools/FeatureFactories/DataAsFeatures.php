@@ -13,7 +13,7 @@ class DataAsFeatures implements FeatureFactoryInterface
      * features. Could contain duplicates (a feature firing twice in
      * for a single document).
      */
-    public function getFeatureArray(string $class, DocumentInterface $document): array
+    public function getFeatureArray(int|string $class, DocumentInterface $document): array
     {
         return $document->getDocumentData();
     }

@@ -11,7 +11,7 @@ namespace NlpTools\Models;
  */
 interface MultinomialNBModelInterface
 {
-    public function getPrior(string $class): float;
+    public function getPrior(int|string $class): float;
 
-    public function getCondProb(string $term, string $class): float;
+    public function getCondProb(int|string $term, int|string $class): float;
 }

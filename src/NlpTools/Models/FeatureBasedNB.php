@@ -38,7 +38,7 @@ class FeatureBasedNB implements MultinomialNBModelInterface
      * Return the prior probability of class $class
      * P(c) as computed by the training data
      */
-    public function getPrior(string $class): float
+    public function getPrior(int|string $class): float
     {
         return $this->priors[$class] ?? 0;
     }
@@ -49,7 +49,7 @@ class FeatureBasedNB implements MultinomialNBModelInterface
      * @param  string $term  The term (word, feature id, ...)
      * @param  string $class The class
      */
-    public function getCondProb(string $term, string $class): float
+    public function getCondProb(int|string $term, int|string $class): float
     {
         if (!isset($this->condprob[$term][$class])) {
             return $this->unknown[$class] ?? 0;

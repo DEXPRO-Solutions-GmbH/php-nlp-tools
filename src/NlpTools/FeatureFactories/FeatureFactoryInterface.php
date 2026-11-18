@@ -14,5 +14,5 @@ interface FeatureFactoryInterface
      *
      * @return array<int, mixed>
      */
-    public function getFeatureArray(string $class, DocumentInterface $document): array;
+    public function getFeatureArray(int|string $class, DocumentInterface $document): array;
 }

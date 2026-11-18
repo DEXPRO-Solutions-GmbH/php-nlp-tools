@@ -130,7 +130,7 @@ class LdaTest extends TestCase
             function ($topic): array {
                 $t = array_merge(...$topic);
 
-                $s = array_sum($t);
+                $s = max(1, array_sum($t));
 
                 return array_map(
                     fn($ti): int|float => $ti / $s,

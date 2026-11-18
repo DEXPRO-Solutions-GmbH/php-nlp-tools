@@ -3,6 +3,9 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
+use Rector\DeadCode\Rector\Stmt\RemoveUnreachableStatementRector;
+use Rector\Naming\Rector\Class_\RenamePropertyToMatchTypeRector;
+use Rector\Php80\Rector\Class_\ClassPropertyAssignToConstructorPromotionRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
 use Rector\Visibility\Rector\ClassConst\ChangeConstantVisibilityRector;
 use Rector\Naming\Rector\Foreach_\RenameForeachValueVariableToMatchExprVariableRector;
@@ -47,5 +50,20 @@ return RectorConfig::configure()
         strictBooleans: true
     )
     ->withSkip([
-        __DIR__ . '/tests/sentiment_maxent.php'
+        __DIR__ . '/tests/sentiment_maxent.php',
+        // PorterStemmer::step4() ends with a statement after the `switch` that the rule wrongly treats as
+        // unreachable, because every case leaves the switch with `return` or `break`. Applying it silently
+        // stops the stemmer from removing -ement, -ism, ... (see PorterStemmerTest).
+        RemoveUnreachableStatementRector::class => [
+            __DIR__ . '/src/NlpTools/Stemmers/PorterStemmer.php',
+        ],
+        // The property names (and their order) of TrainingDocument are the serialization format of
+        // TrainingSet files that applications keep on disk; promoting or renaming them breaks loading
+        // those files (see TrainingSetSerializationTest).
+        ClassPropertyAssignToConstructorPromotionRector::class => [
+            __DIR__ . '/src/NlpTools/Documents/TrainingDocument.php',
+        ],
+        RenamePropertyToMatchTypeRector::class => [
+            __DIR__ . '/src/NlpTools/Documents/TrainingDocument.php',
+        ],
     ]);

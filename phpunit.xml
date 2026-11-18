@@ -1,4 +1,4 @@
-<phpunit bootstrap="tests/bootstrap.php" colors="true">
+<phpunit bootstrap="tests/bootstrap.php" colors="true" failOnDeprecation="true" failOnWarning="true" failOnNotice="true">
     <testsuite name="NlpTools" >
             <directory>./tests/NlpTools/</directory>
     </testsuite>

@@ -29,7 +29,7 @@ class LinearModel
      * @param  string $feature The feature for which the weight will be returned
      * @return float  The weight
      */
-    public function getWeight(string $feature): float
+    public function getWeight(int|string $feature): float
     {
         if (!isset($this->l[$feature])) {
             return 0;

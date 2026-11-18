@@ -68,7 +68,7 @@ class Maxent extends LinearModel
      *
      * @param array<int, string> $classes
      */
-    public function calculateProbability(array $classes, FeatureFactoryInterface $featureFactory, DocumentInterface $document, string $class): float
+    public function calculateProbability(array $classes, FeatureFactoryInterface $featureFactory, DocumentInterface $document, int|string $class): float
     {
         $exps = [];
         foreach ($classes as $cl) {

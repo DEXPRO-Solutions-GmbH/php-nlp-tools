@@ -592,6 +592,10 @@ class PorterStemmer extends Stemmer
             default:
                 return;
         }
+
+        if ($this->m() > 1) {
+            $this->k = $this->j;
+        }
     }
 
     /*
